@@ -48,7 +48,7 @@
               </div>
               <div class="input-labels2">
                 <label class="senha">senha</label>
-                <input class="senha-input1" name="senha" type="text" />
+                <input class="senha-input1" name="senha" type="password" />
               </div>
             </div>
           </div>

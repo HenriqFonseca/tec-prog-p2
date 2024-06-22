@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Tarefa;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Servlet implementation class excluirTarefaServlet
@@ -39,11 +40,18 @@ public class excluirTarefaServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		Integer idTarefa, idAluno;
+		
 		idTarefa = Integer.valueOf(request.getParameter("idTarefa"));
 		idAluno = Integer.valueOf(request.getParameter("idAluno"));
-		System.out.println(idTarefa);
+		
 		new Tarefa().deletarTarefa(idTarefa);
+		
+		
+		ArrayList<Tarefa> tarefas = new Tarefa().buscarTarefaPorId(idAluno);
+		
+		
 		String mensagem = "Aluno cadastrado!";
+		request.setAttribute("tarefas", tarefas);
 		request.setAttribute("mensagem", mensagem);
 		request.setAttribute("idAluno", idAluno);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("consultarTarefas.jsp");

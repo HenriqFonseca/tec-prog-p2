@@ -58,7 +58,7 @@ public class criarTarefaServlet extends HttpServlet {
 			titulo = request.getParameter("titulo");
 			descricao = request.getParameter("descricao");
 			status = request.getParameter("status");
-			
+			System.out.println("Criar tarefa: Id aluno: " + titulo+descricao+status);
 			Tarefa tarefa = new Tarefa(titulo,descricao,status,idAluno);
 			tarefa.salvar();
 //			Enviar mensagem e redirecionar de volta para a página

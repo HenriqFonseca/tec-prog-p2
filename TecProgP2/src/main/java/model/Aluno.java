@@ -70,6 +70,7 @@ public class Aluno {
 	public Aluno BuscarAlunoPorId(int id){
 		return new AlunoDAO().buscarAlunoPorId(id);
 	}
+	
 	public boolean Login (String email, String senha) {
 		return new AlunoDAO().Login(email, senha);
 	}

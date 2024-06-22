@@ -42,8 +42,6 @@ public class consultarTarefasServlet extends HttpServlet {
 		Integer idAluno;
 		
 		idAluno = Integer.valueOf(request.getParameter("idAluno"));
-		
-		
 		ArrayList<Tarefa> tarefas = new Tarefa().buscarTarefaPorId(idAluno);
 		
 		

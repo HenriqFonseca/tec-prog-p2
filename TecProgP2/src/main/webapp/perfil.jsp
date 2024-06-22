@@ -4,80 +4,74 @@
     
 <%
 	Integer id = (Integer) request.getAttribute("id");
-		System.out.println(request.getAttribute("idAluno"));
+		
+	System.out.println("Printando id normal: "+request.getAttribute("id"));
 	if(request.getAttribute("idAluno") != null){
 		id = (Integer) request.getAttribute("idAluno");
 		session.setAttribute("id", id);
 		
 	}
-	else if(request.getAttribute("id")!= null && request.getAttribute("nome") !=null)
+	else if(request.getAttribute("id")!= null)
 	{
-		
+		System.out.println("Printando id no elseif: "+request.getAttribute("id"));
 		id = (Integer) request.getAttribute("id");
-		String nome = (String) request.getAttribute("nome");
-		session.setAttribute("id", id);
-		session.setAttribute("nome", id);
-		 
+		session.setAttribute("id", id);	 
 		 
 	}
 
 	else{
 		String mensagem = "Faça login para acessar!";
 		request.setAttribute("mensagem", mensagem);
-		request.setAttribute("alunoId", session.getAttribute("id"));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response); 
 		
 	}
 
 
-	
-	
-
-	
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Perfil</title>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
+	<header>
+	        <span id='logo'>TaskManager</span>
+	        <nav class='menu'>
+	           
+	            <form action="consultarTarefas" method="post">
+					<input type="hidden" name="idAluno" value="<%out.print(id);%>">
+					<input class="nav-link" type="submit" value="Consultar Tarefas">
+				</form>
+	            <a href='logout.jsp' class='nav-link'>Deslogar</a>
+	        </nav>
+	</header>
+	<div class='container welcome-text'>
+		<h1>Bem vindo!</h1>
+		<p>Nesse sistema você pode criar e excluir tarefas, as tarefas criadas aparecerão abaixo.</p>
+	</div>
+    <div class='container create-task-container'>
+		<h1>Criar Tarefa</h1>
+    	<form action="criarTarefa" method="post">
+	    	<div class='form-items'>
+	    		<label>Título:</label>
+	        	<input type="text" name="titulo" required><br />
+	        
+	        	<label>Descrição:</label>
+	        	<textarea name="descricao" required></textarea><br />
+	        
+	        	<label>Status: </label>
+	        	<input type="text" name="status" required><br />
+	        	<input type="hidden" name="idAluno" value="<%out.print(id);%>">
+	    	</div>
+	        <button type="submit">Criar tarefa</button>
+    	</form>
+	</div>
 
-<a href="logout.jsp">Sair</a><br>
-<form action="consultarTarefas" method="post">
-	<input type="hidden" name="idAluno" value="<%out.print(id);%>">
-	<input type="submit" value="Consultar Tarefas">
-</form>
-<a href="consultarTarefas.jsp">Consultar minhas tarefas</a>
-
-
-	<h1>Você está logado! <% out.print(id);%></h1>
 	
-	<br><br>
-	
-	<form action="criarTarefa" method="post">
-		<label>Nome da tarefa:</label>
-		<input type="text" name="titulo"><br><br>
-		<label>descrição:</label>
-		<input type="text" name="descricao"><br><br>
-		<label>materia:</label>
-		<input type="text" name="status"><br><br>
-		
-		<input type="hidden" name="idAluno"value="<%out.print(id);%>">
-		
-		<input type="submit" value="Criar tarefa">
-		
-	</form>
-	
-	<br>
-	<%
-		String mensagem = (String) request.getAttribute("mensagem");
-		Integer alunoId = (Integer) request.getAttribute("idAluno");
-		if(mensagem!= null){
-			out.print(mensagem);
-			out.print(alunoId);
-		}	 
-	%>
 </body>
 </html>

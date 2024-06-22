@@ -43,7 +43,7 @@
             </div>
             <div class="credentials1">
               <label class="senha1">senha</label>
-              <input class="senha-input2" name="senha" type="text" />
+              <input class="senha-input2" name="senha" type="password" />
             </div>
             <button type="submit" class="btn-login1">
               <div class="entrar">Entrar</div>
